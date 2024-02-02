@@ -1,0 +1,30 @@
+services:
+  weekdemy-task-manager-backend-app:
+    build:
+      context: .
+      args:
+        - PORT=${PORT}
+    ports:
+      - ${PORT}:${PORT}
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+
+  mysql-db:
+    image: mysql:8.0.36-oracle
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DOCKER_MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DBNAME}
+      MYSQL_USER: ${DBUSER}
+      MYSQL_PASSWORD: ${DBPASS}
+    ports:
+      - 3306:3306
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 10
+
+volumes:
+  mysql-data:

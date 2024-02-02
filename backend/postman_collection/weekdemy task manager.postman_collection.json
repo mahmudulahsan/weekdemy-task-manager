@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "89df5f9f-ad05-4289-97db-aeb17d96ffa1",
+		"name": "weekdemy task manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31062623"
+	},
+	"item": [
+		{
+			"name": "get all tasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/weekdemy/tasks",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"weekdemy",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get a task",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/weekdemy/tasks/1",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"weekdemy",
+						"tasks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"teamName\": \"Team 1\",\n    \"projectName\": \"Project 1\",\n    \"isFinished\": false,\n    \"finishedTime\": \"2024-01-22 22:11:06\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/weekdemy/tasks",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"weekdemy",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update task",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"teamName\": \"Team 10\",\n    \"projectName\": \"Project 1\",\n    \"isFinished\": false,\n    \"finishedTime\": \"2024-01-22 22:11:06\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/weekdemy/tasks/1",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"weekdemy",
+						"tasks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete task",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/weekdemy/tasks/1",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"weekdemy",
+						"tasks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
