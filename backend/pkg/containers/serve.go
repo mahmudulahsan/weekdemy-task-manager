@@ -21,34 +21,19 @@ func Serve(e *echo.Echo) {
 	db := connection.GetDB()
 
 	// repository initialization
-	bookRepo := repositories.BookDBInstance(db)
-	authorRepo := repositories.AuthorDBInstance(db)
-	userRepo := repositories.UserDBInstance(db)
 	teamRepo := repositories.TeamDBInstance(db)
 
 	// service initialization
-	bookService := services.BookServiceInstance(bookRepo, authorRepo)
-	authorService := services.AuthorServiceInstance(authorRepo, bookRepo)
-	authService := services.AuthServiceInstance(userRepo)
 	teamService := services.TeamServiceInstance(teamRepo)
 
 	// controller initialization
-	bookCtr := controllers.NewBookController(bookService)
-	authorCtr := controllers.NewAuthorController(authorService)
-	authCtr := controllers.NewAuthController(authService)
 	teamCtr := controllers.NewTeamController(teamService)
 
 	//route initialization
-	bookRoutes := routes.NewBookRoutes(e, bookCtr)
-	authorRoutes := routes.NewAuthorRoutes(e, authorCtr)
-	authRoutes := routes.NewAuthRoutes(e, authCtr)
 	demoRoutes := routes.NewDemoRoutes(e)
 	teamRoutes := routes.NewTeamRoutes(e, teamCtr)
 
 	//route binding
-	bookRoutes.InitBookRoutes()
-	authorRoutes.InitAuthorRoutes()
-	authRoutes.InitAuthRoutes()
 	demoRoutes.InitDemoRoutes()
 	teamRoutes.InitTeamRoutes()
 

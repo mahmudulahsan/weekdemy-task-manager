@@ -31,23 +31,7 @@ func Connect() {
 
 // migrate the tables.
 func migrate() {
-	err := db.Migrator().AutoMigrate(&models.BookDetail{})
-	if err != nil {
-		fmt.Println("Error migrating table. ", err)
-		panic(err)
-	}
-	err = db.Migrator().AutoMigrate(&models.AuthorDetail{})
-	if err != nil {
-		fmt.Println("Error migrating table. ", err)
-		panic(err)
-	}
-	err = db.Migrator().AutoMigrate(&models.UserDetail{})
-	if err != nil {
-		fmt.Println("Error migrating table. ", err)
-		panic(err)
-	}
-
-	err = db.Migrator().AutoMigrate(&models.TeamDetail{})
+	err := db.Migrator().AutoMigrate(&models.TeamDetail{})
 	if err != nil {
 		fmt.Println("Error migrating table. ", err)
 		panic(err)
