@@ -36,8 +36,6 @@ export default function Page() {
   const handleAddTeam = async (e) => {
     e.preventDefault();
     try {
-      // Insert the current time in the startTime field
-      // const currentTime = new Date();
       const formattedTime =new Date().toLocaleString();
       // console.log(formattedTime)
   
@@ -53,11 +51,9 @@ export default function Page() {
       });
   
       if (response.ok) {
-        // Successfully created team, fetch updated tasks
         const updatedResponse = await fetch('http://192.168.11.150:8080/weekdemy/teams');
         const updatedData = await updatedResponse.json();
         setTasks(updatedData);
-        // Clear the form after successful addition
         setNewTeam({
           teamName: '',
           projectName: '',
@@ -83,7 +79,6 @@ export default function Page() {
       });
 
       if (response.ok) {
-        // Successfully deleted team, fetch updated tasks
         const updatedResponse = await fetch('http://192.168.11.150:8080/weekdemy/teams');
         const updatedData = await updatedResponse.json();
         setTasks(updatedData);
@@ -98,12 +93,16 @@ export default function Page() {
 
   const handleUpdateTeam = async () => {
     try {
+      const formattedTime =new Date().toLocaleString();
       const response = await fetch(`http://192.168.11.150:8080/weekdemy/teams/${editingTaskId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(newTeam),
+        body: JSON.stringify({
+          ...newTeam,
+          finishedTime: formattedTime,
+        }),
       });
 
       if (response.ok) {
@@ -111,7 +110,6 @@ export default function Page() {
         const updatedResponse = await fetch('http://192.168.11.150:8080/weekdemy/teams');
         const updatedData = await updatedResponse.json();
         setTasks(updatedData);
-        // Clear the form and reset editingTaskId after successful update
         setNewTeam({
           teamName: '',
           projectName: '',
@@ -148,7 +146,7 @@ export default function Page() {
       <h1 className="mt-10 text-5xl font-bold text-center">Weekdemy Task Manager</h1>
 
       <div className='mt-10 flex justify-center items-center'>
-      {/* Form for adding/updating a team */}
+  
       <div className="p-10 bg-base-300 flex flex-col items-center mt-4">
         {editingTaskId ? (<h1 className='font-bold text-2xl text-info'>Update the Team</h1>):(<h1 className="font-bold text-2xl text-info">Add The Team</h1>)}
       <form>
@@ -167,9 +165,6 @@ export default function Page() {
               className="m-3 input input-bordered w-full max-w-xs" />
           </label>
           <div className="m-4 flex justify-center">
-        {/* <button className="btn btn-secondary" onClick={handleAddTeam}>
-          Add Team
-        </button> */}
         <button className="btn btn-success" onClick={editingTaskId ? handleUpdateTeam : handleAddTeam}>
           {editingTaskId ? 'Update Team' : 'Add Team'}
         </button>
@@ -177,7 +172,6 @@ export default function Page() {
         </form>
       </div>
 
-      {/* Display the fetched tasks */}
       <div className="flex justify-center items-center">
         <div className="overflow-x-auto">
           <table className="table">
@@ -201,6 +195,7 @@ export default function Page() {
                   <td>
                     <button
                       className={`btn ${task.isFinished ? 'btn-error' : 'btn-success'}`}
+                      onClick={() => startEditingTeam(task.id)}
                     >
                       {task.isFinished ? 'Mark as undone' : 'Mark as done'}
                     </button>
