@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"github.com/labstack/echo/v4"
 	"strconv"
 	"weekdemy-task-manager-backend/pkg/domain"
@@ -30,19 +29,19 @@ func (controller *TeamController) GetFilteredTeams(e echo.Context) error {
 	// prepare the request
 	request := make(map[string]string)
 	if e.QueryParam("teamName") != "" {
-		request["teamName"] = e.QueryParam("teamName")
+		request["TeamName"] = e.QueryParam("teamName")
 	}
 	if e.QueryParam("projectName") != "" {
-		request["projectName"] = e.QueryParam("projectName")
+		request["ProjectName"] = e.QueryParam("projectName")
 	}
 	if e.QueryParam("isFinished") != "" {
-		request["isFinished"] = e.QueryParam("isFinished")
+		request["IsFinished"] = e.QueryParam("isFinished")
 	}
 	if e.QueryParam("startTime") != "" {
-		request["startTime"] = e.QueryParam("startTime")
+		request["StartTime"] = e.QueryParam("startTime")
 	}
 	if e.QueryParam("finishedTime") != "" {
-		request["finishedTime"] = e.QueryParam("finishedTime")
+		request["FinishedTime"] = e.QueryParam("finishedTime")
 	}
 
 	// pass the request to the service layer
@@ -73,8 +72,6 @@ func (controller *TeamController) GetTeam(e echo.Context) error {
 func (controller *TeamController) CreateTeam(e echo.Context) error {
 	// prepare the request
 	request := &types.CreateTeamRequest{}
-	// print request body
-	fmt.Println(request)
 	if err := e.Bind(request); err != nil {
 		return e.JSON(400, "invalid request body")
 	}
