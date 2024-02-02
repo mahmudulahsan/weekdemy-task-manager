@@ -12,13 +12,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{server}}/weekdemy/tasks",
+					"raw": "{{server}}/weekdemy/teams",
 					"host": [
 						"{{server}}"
 					],
 					"path": [
 						"weekdemy",
-						"tasks"
+						"teams"
 					]
 				}
 			},
@@ -30,13 +30,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{server}}/weekdemy/tasks/1",
+					"raw": "{{server}}/weekdemy/teams/1",
 					"host": [
 						"{{server}}"
 					],
 					"path": [
 						"weekdemy",
-						"tasks",
+						"teams",
 						"1"
 					]
 				}
@@ -58,13 +58,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{server}}/weekdemy/tasks",
+					"raw": "{{server}}/weekdemy/teams",
 					"host": [
 						"{{server}}"
 					],
 					"path": [
 						"weekdemy",
-						"tasks"
+						"teams"
 					]
 				}
 			},
@@ -85,13 +85,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{server}}/weekdemy/tasks/1",
+					"raw": "{{server}}/weekdemy/teams/1",
 					"host": [
 						"{{server}}"
 					],
 					"path": [
 						"weekdemy",
-						"tasks",
+						"teams",
 						"1"
 					]
 				}
@@ -104,13 +104,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{server}}/weekdemy/tasks/1",
+					"raw": "{{server}}/weekdemy/teams/1",
 					"host": [
 						"{{server}}"
 					],
 					"path": [
 						"weekdemy",
-						"tasks",
+						"teams",
 						"1"
 					]
 				}

@@ -22,11 +22,11 @@ func (demoRoutes *DemoRoutes) InitDemoRoutes() {
 
 	e.GET("/ping", Pong)
 	demo := e.Group("/weekdemy")
-	demo.GET("/tasks", getDemoTasks)
-	demo.GET("/tasks/:id", getDemoTask)
-	demo.POST("/tasks", createDemoTask)
-	demo.PUT("/tasks/:id", updateDemoTask)
-	demo.DELETE("/tasks/:id", deleteDemoTask)
+	demo.GET("/teams", getDemoTasks)
+	demo.GET("/teams/:id", getDemoTask)
+	demo.POST("/teams", createDemoTask)
+	demo.PUT("/teams/:id", updateDemoTask)
+	demo.DELETE("/teams/:id", deleteDemoTask)
 
 }
 
