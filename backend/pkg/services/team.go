@@ -2,6 +2,8 @@ package services
 
 import (
 	"errors"
+	"fmt"
+	"strconv"
 	"weekdemy-task-manager-backend/pkg/domain"
 	"weekdemy-task-manager-backend/pkg/models"
 	"weekdemy-task-manager-backend/pkg/types"
@@ -70,6 +72,7 @@ func (service *teamService) GetTeam(teamID uint) (*types.ReadTeamResponse, error
 // CreateTeam creates a new team with given team details and returns the created team.
 func (service *teamService) CreateTeam(request *types.CreateTeamRequest) (*types.ReadTeamResponse, error) {
 	// prepare team detail
+	fmt.Println(request.FinishedTime)
 	teamDetail := &models.TeamDetail{
 		TeamName:     request.TeamName,
 		ProjectName:  request.ProjectName,
@@ -108,8 +111,8 @@ func (service *teamService) UpdateTeam(teamID uint, request *types.UpdateTeamReq
 	existingTeam.TeamName = request.TeamName
 	existingTeam.ProjectName = request.ProjectName
 	existingTeam.IsFinished = request.IsFinished
-	existingTeam.StartTime = existingTeam.StartTime
-	existingTeam.FinishedTime = existingTeam.FinishedTime
+	existingTeam.StartTime = request.StartTime
+	existingTeam.FinishedTime = request.FinishedTime
 
 	// update team in db
 	updatedTeam, err := service.repo.UpdateTeam(existingTeam)
@@ -131,15 +134,21 @@ func (service *teamService) UpdateTeam(teamID uint, request *types.UpdateTeamReq
 }
 
 func (service *teamService) DeleteTeam(teamID uint) (*types.DeleteTeamResponse, error) {
+	// check if team exists
+	_, err := service.repo.GetTeam(teamID)
+	if err != nil {
+		return nil, errors.New("no team found with given ID")
+	}
+
 	// delete team from db
-	err := service.repo.DeleteTeam(teamID)
+	err = service.repo.DeleteTeam(teamID)
 	if err != nil {
 		return nil, err
 	}
 
 	// prepare response
 	response := &types.DeleteTeamResponse{
-		MSG: "Team with ID " + string(teamID) + " deleted successfully.",
+		MSG: "Team with ID " + strconv.FormatUint(uint64(teamID), 10) + " deleted successfully.",
 	}
 
 	return response, nil

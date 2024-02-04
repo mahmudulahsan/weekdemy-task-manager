@@ -2,15 +2,16 @@ package types
 
 import (
 	validation "github.com/go-ozzo/ozzo-validation"
+	"time"
 )
 
 type ReadTeamResponse struct {
-	ID           uint   `json:"id"`
-	TeamName     string `json:"teamName"`
-	ProjectName  string `json:"projectName"`
-	IsFinished   bool   `json:"isFinished"`
-	StartTime    string `json:"startTime,omitempty"`
-	FinishedTime string `json:"finishedTime,omitempty"`
+	ID           uint       `json:"id"`
+	TeamName     string     `json:"teamName"`
+	ProjectName  string     `json:"projectName"`
+	IsFinished   bool       `json:"isFinished"`
+	StartTime    time.Time  `json:"startTime,omitempty"`
+	FinishedTime *time.Time `json:"finishedTime,omitempty"`
 }
 
 type DeleteTeamResponse struct {
@@ -34,7 +35,10 @@ func (request CreateTeamRequest) Validate() error {
 			validation.Length(1, 256)),
 		validation.Field(&request.ProjectName,
 			validation.Required.Error("Project name cannot be empty"),
-			validation.Length(1, 256)))
+			validation.Length(1, 256)),
+		validation.Field(&request.StartTime,
+			validation.Required.Error("Start time cannot be empty")),
+	)
 }
 
 func (request UpdateTeamRequest) Validate() error {

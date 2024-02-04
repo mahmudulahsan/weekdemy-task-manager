@@ -12,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{server}}/weekdemy/teams?teamName=Team asdfsdfsdf10&projectName=Project 1--",
+					"raw": "{{server}}/weekdemy/teams?teamName=Team asdfsdfsdf10",
 					"host": [
 						"{{server}}"
 					],
@@ -32,7 +32,8 @@
 						},
 						{
 							"key": "projectName",
-							"value": "Project 1--"
+							"value": "Project 1",
+							"disabled": true
 						}
 					]
 				}
@@ -65,7 +66,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"teamName\": \"Team asdfsdfsdf10\",\n    \"projectName\": \"Project 1--\",\n    \"isFinished\": false,\n    \"startTime\": \"2024-02-02 17:17:31.977\"\n}",
+					"raw": "{\n    \"teamName\": \"Team asdfsdfsdf10\",\n    \"projectName\": \"Project  6-\",\n    \"isFinished\": false,\n    \"startTime\": \"2024-02-04T07:53:32.260Z\",\n    \"finishedTime\": \"2025-02-04T07:53:32.260Z\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -92,7 +93,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"teamName\": \"Team asdfsdfsdf10\",\n    \"projectName\": \"Project 1\",\n    \"isFinished\": false,\n    \"finishedTime\": \"2024-01-22 22:11:06\"\n}",
+					"raw": "{\n    \"teamName\": \"Team asdfsdfsdf10\",\n    \"projectName\": \"Project 1\",\n    \"isFinished\": false,\n    \"startTime\": \"2026-02-04T13:53:32.26+06:00\",\n    \"finishedTime\": \"2026-02-04T13:53:32.26+06:00\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -119,14 +120,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{server}}/weekdemy/teams/1",
+					"raw": "{{server}}/weekdemy/teams/2",
 					"host": [
 						"{{server}}"
 					],
 					"path": [
 						"weekdemy",
 						"teams",
-						"1"
+						"2"
 					]
 				}
 			},
