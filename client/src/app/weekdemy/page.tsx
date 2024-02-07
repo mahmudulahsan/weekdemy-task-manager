@@ -37,8 +37,9 @@ export default function Page() {
     e.preventDefault();
     try {
       // Insert the current time in the startTime field
-      const currentTime = new Date();
-      const formattedTime = currentTime.toISOString();
+      // const currentTime = new Date();
+      const formattedTime =new Date().toLocaleString();
+      // console.log(formattedTime)
   
       const response = await fetch('http://192.168.11.150:8080/weekdemy/teams', {
         method: 'POST',
@@ -64,8 +65,10 @@ export default function Page() {
           startTime: '',
           finishedTime: '',
         });
+        console.log(formattedTime)
         console.log('Team added successfully');
       } else {
+          console.log(typeof formattedTime)
         console.error('Failed to add team');
       }
     } catch (error) {
