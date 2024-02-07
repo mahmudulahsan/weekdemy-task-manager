@@ -46,6 +46,12 @@ func migrate() {
 		fmt.Println("Error migrating table. ", err)
 		panic(err)
 	}
+
+	err = db.Migrator().AutoMigrate(&models.TeamDetail{})
+	if err != nil {
+		fmt.Println("Error migrating table. ", err)
+		panic(err)
+	}
 }
 
 // GetDB returns the db instance.

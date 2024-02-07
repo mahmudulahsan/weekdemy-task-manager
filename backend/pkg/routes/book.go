@@ -24,7 +24,7 @@ func NewBookRoutes(echo *echo.Echo, controller controllers.BookController) *Book
 func (bookRoutes *BookRoutes) InitBookRoutes() {
 	e := bookRoutes.echo
 
-	e.GET("/ping", Pong)
+	//e.GET("/ping", Pong)
 
 	book := e.Group("/bookstore")
 	book.GET("/books", bookRoutes.controller.GetFilteredBooks)
